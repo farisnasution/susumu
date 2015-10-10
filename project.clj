@@ -1,5 +1,5 @@
 (defproject susumu "0.1.0"
-  :description "Generic utility"
+  :description "Utility"
   :url "http://github.com/farisnasution/susumu"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
