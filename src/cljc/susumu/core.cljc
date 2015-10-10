@@ -51,6 +51,17 @@
   [x :- s/Any]
   (not (map? x)))
 
+(s/defn as-?set :- #{s/Any}
+  [x]
+  (cond
+   (set? x) x
+   (coll? x) (set x)))
+
+(s/defn in :- s/Any
+  [coll :- (s/cond-pre [s/Any] {s/Any s/Any})
+   x    :- s/Any]
+  ((as-?set coll) x))
+
 (s/defn as-?kw :- (s/maybe (s/cond-pre s/Keyword s/Str))
   [x :- s/Any]
   (cond
