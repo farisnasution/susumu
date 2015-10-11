@@ -68,6 +68,12 @@
    (keyword? x) x
    (string? x) (keyword x)))
 
+(s/defn as-?name :- (s/maybe (s/cond-pre s/Str s/Keyword))
+  [x :- s/Any]
+  (cond
+    (string? x) x
+    (keyword? x) (name x)))
+
 (s/defn as-?email :- (s/maybe s/Str)
   "Taken from https://github.com/ptaoussanis/encore"
   [x :- s/Str]
