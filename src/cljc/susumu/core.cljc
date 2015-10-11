@@ -10,6 +10,13 @@
 
 ;; generic
 
+(s/defn dissoc-in :- {s/Any s/Any}
+  [m :-  {s/Any s/Any}
+   ks :- [s/Any]
+   & dissoc-ks :- [s/Any]]
+  (update-in m ks (fn [m]
+                    (apply dissoc m dissoc-ks))))
+
 (s/defn find-first :- s/Any
   [f    :- Fn
    coll :- [s/Any]]
