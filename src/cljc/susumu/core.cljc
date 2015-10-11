@@ -10,6 +10,15 @@
 
 ;; generic
 
+(s/defn map-kvs :- {s/Any s/Any}
+  [m :- {s/Any s/Any}
+   f :- Fn]
+  (persistent! (reduce-kv (fn [m k v]
+                            (let [[k v] (f k v)]
+                              (assoc! m k v)))
+                          (transient {})
+                          m)))
+
 (s/defn dissoc-in :- {s/Any s/Any}
   [m :-  {s/Any s/Any}
    ks :- [s/Any]
