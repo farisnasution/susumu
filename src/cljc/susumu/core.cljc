@@ -5,14 +5,14 @@
 
 ;; type
 
-(def Fn #?(:clj clojure.lang.IFn
-           :cljs js/Function))
+(def Fn* #?(:clj clojure.lang.IFn
+            :cljs js/Function))
 
 ;; generic
 
 (s/defn map-kvs :- {s/Any s/Any}
   [m :- {s/Any s/Any}
-   f :- Fn]
+   f :- Fn*]
   (persistent! (reduce-kv (fn [m k v]
                             (let [[k v] (f k v)]
                               (assoc! m k v)))
@@ -27,7 +27,7 @@
                     (apply dissoc m dissoc-ks))))
 
 (s/defn find-first :- s/Any
-  [f    :- Fn
+  [f    :- Fn*
    coll :- [s/Any]]
   (first (filter f coll)))
 
